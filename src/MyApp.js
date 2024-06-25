@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Greetings from "./Greetings";
 import Greeting2 from "./Greetings2";
 
@@ -10,6 +10,12 @@ const MyApp = () => {
     // hello = "Selamat Datang";
     // console.log(hello);
   };
+
+  useEffect(() => {
+    console.log("ini dijalan secara otomatis");
+    //Calling API
+  }, []);
+
   return (
     //JSX
     //Komentar diluar JSX
