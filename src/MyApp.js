@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Greetings from "./Greetings";
 import Greeting2 from "./Greetings2";
 
 const MyApp = () => {
-  const hello = "Hello World!!!";
+  // let hello = "Hello World!!!";
+  const [hello, setHello] = useState("Hello World!!!");
   const handleClick = () => {
-    console.log("Button clicked");
+    setHello("Selamat Datang");
+    // hello = "Selamat Datang";
+    // console.log(hello);
   };
   return (
     //JSX
