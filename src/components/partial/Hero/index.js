@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { getDatabase, ref, onValue } from "firebase/database";
 
 const Hero = () => {
+  const [heroTitle, setHeroTitle] = useState("");
+  const [heroSubTitle, setHeroSubTitle] = useState("");
+  useEffect(() => {
+    const db = getDatabase();
+    const heroRef = ref(db, "hero/");
+    onValue(heroRef, (snapshot) => {
+      const data = snapshot.val();
+      setHeroTitle(data);
+    });
+    const heroSubTitleRef = ref(db, "heroSubTitle/");
+    onValue(heroSubTitleRef, (snapshot) => {
+      const data = snapshot.val();
+      setHeroSubTitle(data);
+    });
+  }, []);
   return (
     <section className="hero section center-content illustration-section-01">
       <div className="container-sm">
@@ -10,15 +26,14 @@ const Hero = () => {
               className="mt-0 mb-16 reveal-from-bottom"
               data-reveal-delay={200}
             >
-              Landing template for startups
+              {heroTitle}
             </h1>
             <div className="container-xs">
               <p
                 className="mt-0 mb-32 reveal-from-bottom"
                 data-reveal-delay={400}
               >
-                Our landing page template works on all devices, so you only have
-                to set it up once, and get beautiful results forever.
+                {heroSubTitle}
               </p>
             </div>
           </div>

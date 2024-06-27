@@ -5,16 +5,19 @@ import Client from "../../partial/Clients";
 import Features from "../../partial/Features";
 import Pricing from "../../partial/Pricing";
 import Footer from "../../partial/Footer";
+import { Fade } from "react-awesome-reveal";
 
 const HomePage = () => {
   return (
     <div className="body-wrap">
       <Header />
       <main className="site-content">
-        <Hero />
-        <Client />
-        <Features />
-        <Pricing />
+        <Fade cascade>
+          <Hero />
+          <Client />
+          <Features />
+          <Pricing />
+        </Fade>
       </main>
       <Footer />
     </div>
