@@ -4,19 +4,29 @@ import { getDatabase, ref, onValue } from "firebase/database";
 const Hero = () => {
   const [heroTitle, setHeroTitle] = useState("");
   const [heroSubTitle, setHeroSubTitle] = useState("");
+  const [personalInfo, setPersonalInfo] = useState({});
+
   useEffect(() => {
     const db = getDatabase();
-    const heroRef = ref(db, "hero/");
-    onValue(heroRef, (snapshot) => {
+    const heroTitleRef = ref(db, "hero/title");
+    onValue(heroTitleRef, (snapshot) => {
       const data = snapshot.val();
       setHeroTitle(data);
     });
-    const heroSubTitleRef = ref(db, "heroSubTitle/");
+    const heroSubTitleRef = ref(db, "hero/subTitle");
     onValue(heroSubTitleRef, (snapshot) => {
       const data = snapshot.val();
       setHeroSubTitle(data);
     });
+
+    const personalInfoRef = ref(db, "personalInfo");
+    onValue(personalInfoRef, (snapshot) => {
+      const data = snapshot.val();
+      setPersonalInfo(data);
+      // setHeroSubTitle(data);
+    });
   }, []);
+
   return (
     <section className="hero section center-content illustration-section-01">
       <div className="container-sm">
@@ -34,6 +44,7 @@ const Hero = () => {
                 data-reveal-delay={400}
               >
                 {heroSubTitle}
+                {personalInfo.nama}
               </p>
             </div>
           </div>
